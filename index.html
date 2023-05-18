@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <center><div id="calculator" class="car">
+        <input id="screen" type="text" onchange="evaluation()">
+        <table>
+            <tr>
+                <td colspan="2"><button id="clear">CLEAR</button></td>
+                <td><button>/</button></td>
+                <td><button>X</button></td>
+            </tr>
+            <tr>
+                <td><button>9</button></td>
+                <td><button>8</button></td>
+                <td><button>7</button></td>
+                <td><button>+</button></td>
+            </tr>
+            <tr>
+                <td><button>6</button></td>
+                <td><button>5</button></td>
+                <td><button>4</button></td>
+                <td><button>-</button></td>
+            </tr>
+            <tr>
+                <td><button>3</button></td>
+                <td><button>2</button></td>
+                <td><button>1</button></td>
+                <td><button>%</button></td>
+            </tr>
+            <tr>
+                <td><button>.</button></td>
+                <td><button>0</button></td>
+                <td colspan="2"><button id="equals">=</button></td>
+            </tr>
+        </table>
+    </div>
+</center>
+</body>
+<style>
+   body {
+    background: #5D8BA1;
+    }
+    #calculator {
+    transform: translateY(50%);
+    background-color: rgb(255, 255, 255);
+    display: inline-flex;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid cyan;
+    height: 50vh; 
+    flex-direction: column;
+    gap: 15px;
+    }
+    table{
+        height: 90%;
+        
+    }
+    button{
+        background: #525252;
+        height: 100%;
+        width: 80px;
+        font-size: larger;
+        margin: 1px;
+        color: white;
+    }
+    button:hover{
+        background-color: #383838;
+    }
+    #clear,#equals{
+        width: 166px;
+        color: #3cff00;
+    }
+    #screen{
+        border: 2px solid rgb(32, 32, 32);
+        border-radius: 5px;
+        font-size: x-large;
+        color: #239600;
+        text-transform: uppercase;
+        height: 10%;
+    }
+    @media(max-width:768px){
+    #calculator{
+    height: 70vh;
+    transform: translateY(20%);
+    }
+    }
+    @media(max-width:376px){
+        button{
+            width: 60px;
+        }
+        #clear,#equals{
+            width: 135px;
+        }
+    }
+    @media(max-width:321px){
+        #calculator{
+            width:80%;
+        }
+        button{
+            width: 55px;
+        }
+        #clear,#equals{
+            width: 117px;
+        }
+    }
+</style>
+<script>
+    var screen=document.getElementById("screen");
+    var buttons=document.querySelectorAll("button");
+    for(item of buttons){
+        item.addEventListener("click" , (item)=>{
+        buttontext=item.target.innerText;
+        if(buttontext=="="){
+            evaluation();
+        }
+        else if(buttontext=="CLEAR"){
+            screen.value=""
+        }
+        else if(buttontext=="X"){
+            screen.value+="*"
+        }
+        else{
+            screen.value+=buttontext
+        }
+    })
+}
+function evaluation(){
+    if(screen.value!=""){ 
+       screen.value=eval(screen.value);
+    }
+    else{
+        screen.value=""
+    }
+}
+</script>
+</html>
